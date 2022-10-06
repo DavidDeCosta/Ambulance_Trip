@@ -24,7 +24,6 @@ public class TripRecord {
     {
         Date date;
         date = new Date(numberForDate);
-
         
     }
 
@@ -63,6 +62,16 @@ public class TripRecord {
     {
         TripRecord rec;
         rec = new TripRecord();
+
+        String [] ranName = {"David", "Emily","Vincent", "Nathan"};
+        String [] ranDate = {"10/06/2022" , "10/27/2022", "11/01/2022", "11/19/2022"};
+        String [] ranCode = {"A0428", "A0429", "A0427", "A0434"};
+        String [] ranInitial ={"0", "1,500", "30,000", "100,000"};
+        String [] ranReturn = {"300", " 2,000", " 30,120", " 100,350"};
+        String [] ranBilling = {"$500/mi" , "$1,000/mi", "$2,000/mi", "$2,500/mi"};
+        String [] ranComment = {"Patient was crazy", "Patient was calm", "Patient was in pain", "No comment"};
+
+        
 
         return rec;
     }

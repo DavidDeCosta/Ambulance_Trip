@@ -195,42 +195,12 @@ public class Myframe extends JFrame
 
     void handleAdd()
     {
-        date = new JTextField(30);
-        enterName = new JTextField(30);
-        enterServiceCode = new JTextField(30);
-        initialMileage = new JTextField(30);
-        mileageOnReturn = new JTextField(30);
-        billingRate = new JTextField(30);
-        comments = new JTextField(30);
 
-        Object [] fields = {
-            "Enter Date of trip", date,
-            "Enter name", enterName,
-            "Enter Service Code", enterServiceCode,
-            "Enter initial mileage", initialMileage,
-            "Enter mileage on return", mileageOnReturn,
-            "Enter the billing rate", billingRate,
-            "Additional comments", comments
-
-        };
-
-        JOptionPane.showConfirmDialog(null, fields, "Ambulance trip info", JOptionPane.OK_CANCEL_OPTION);
-
-        
-
-//        userImputField = new JDialog();
-//        userImputField.setLayout((new GridLayout(4,2)));
-//        userImputField.add(enterName);
-//        userImputField.add(enterServiceCode);
-//        userImputField.setSize(250, 120);
-//        userImputField.setVisible(true);
-
-
-//        userName = JOptionPane.showInputDialog("Enter a name");  //userName will hold the response from the user
-//        record = new TripRecord(userName);
-//        justAListModel.addElement(record);
-//        justAListModel.numberOfTripRecords += 1;
-//        System.out.println("There are " + justAListModel.numberOfTripRecords + " record in the list");
+        userName = JOptionPane.showInputDialog("Enter a name");  //userName will hold the response from the user
+        record = new TripRecord(userName);
+        justAListModel.addElement(record);
+        justAListModel.numberOfTripRecords += 1;
+        System.out.println("There are " + justAListModel.numberOfTripRecords + " record in the list");
     }
 
     void handleDelete()
@@ -341,11 +311,8 @@ public class Myframe extends JFrame
 
     void handleadd_random()
     {
-        long number;
-        number = myDate.getTime();
 
-        TripRecord randomInstance;
-        randomInstance = new TripRecord(number);
+        justAListModel.addElement(TripRecord.getRandom()); // adds a random instance of triprecord
     }
 
     void buildGUI()
