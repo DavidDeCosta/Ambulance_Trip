@@ -55,6 +55,8 @@ public class Myframe extends JFrame
     JList<TripRecord> displayList;                           // displays their names
     JScrollPane tripScrollPane;
 
+    MyDialog dialog;
+
 
 
     //======================================CONSTRUCTOR =======================================================
@@ -63,7 +65,7 @@ public class Myframe extends JFrame
         theFileChooser = new JFileChooser(".");   //opens current working directory
 
         addComponents();
-        buildGUI();
+        buildMainFrame();
     }
 
 
@@ -195,12 +197,8 @@ public class Myframe extends JFrame
 
     void handleAdd()
     {
+        dialog = new MyDialog();
 
-        userName = JOptionPane.showInputDialog("Enter a name");  //userName will hold the response from the user
-        record = new TripRecord(userName);
-        justAListModel.addElement(record);
-        justAListModel.numberOfTripRecords += 1;
-        System.out.println("There are " + justAListModel.numberOfTripRecords + " record in the list");
     }
 
     void handleDelete()
@@ -315,7 +313,7 @@ public class Myframe extends JFrame
         justAListModel.addElement(TripRecord.getRandom()); // adds a random instance of triprecord
     }
 
-    void buildGUI()
+    void buildMainFrame()
     {
         toolkit = Toolkit.getDefaultToolkit();                      // used to help get the users screen size
         screenSize = toolkit.getScreenSize();                       //get the users screen size

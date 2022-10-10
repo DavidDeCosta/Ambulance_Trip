@@ -3,6 +3,7 @@ import javax.swing.*;
 import java.io.*;
 
 public class MyListModel extends DefaultListModel<TripRecord>
+                         implements DataManager
 {
 
     //======================================DATA MEMBERS ========================================================
@@ -47,6 +48,18 @@ public class MyListModel extends DefaultListModel<TripRecord>
         {
             System.out.println("Error, could not write the name. ");
         }
+    }
+
+    @Override
+    public void add(TripRecord rec) {
+        // TODO Auto-generated method stub
+        
+    }
+
+    @Override
+    public void replace(TripRecord rec, int index) {
+        // TODO Auto-generated method stub
+        
     }
     
 }
