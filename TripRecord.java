@@ -85,10 +85,10 @@ public class TripRecord {
 
         String [] ranName = {"David", "Emily","Vincent", "Nathan"};
         String [] ranCode = {"A0428", "A0429", "A0427", "A0434"};
-//        String [] ranBilling = {"$500/mi" , "$1,000/mi", "$2,000/mi", "$2,500/mi"};
+        String [] dates = {"10/05/1990", "08/19/1999", "04/25/2000", "11/03/2018"};
         String [] ranComment = {"Patient was crazy", "Patient was calm", "Patient was in pain", "No comment"};
 
-        rec.date = (ran.nextLong(570));     // returns a random long to be used as a date
+        rec.myDate = (dates[ran.nextInt(4)]);     // returns a random long to be used as a date
 
         rec.name = (ranName[ran.nextInt(4)]);
         rec.serviceCode = (ranCode[ran.nextInt(4)]);
@@ -113,8 +113,6 @@ public class TripRecord {
     public String toString() 
     {
 
-        sdf = new SimpleDateFormat("M/d/y");  //specefies what format i want
-        myDate = sdf.format(date);                     // sets the format to the date
 
         billingRate = Math.floor(billingRate * 100) /100;   //makes the decimal show to 2 places
 

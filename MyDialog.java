@@ -2,6 +2,7 @@ import java.awt.Dialog;
 import javax.swing.*;
 import javax.swing.GroupLayout.Alignment;
 import java.awt.event.*;
+import java.awt.*;
 
 public class MyDialog extends JDialog
                         implements ActionListener
@@ -9,6 +10,8 @@ public class MyDialog extends JDialog
 //==================================DATA MEMBERS ====================================================
     JComponent panel;
     GroupLayout groupLayout;
+
+    JPanel panelForSubmitCancel;
 
     JLabel dateLabel;
     JLabel nameLabel;
@@ -28,6 +31,8 @@ public class MyDialog extends JDialog
 
     JButton submitButton;
     JButton cancelButton;
+
+    BillingVerifier billingVerifier;
 
 //==================================CONSTRUCTORS ===================================================
     MyDialog()
@@ -64,6 +69,7 @@ public class MyDialog extends JDialog
 
         billingRateLabel = new JLabel("Enter billing rate: ");
         billingRateTF = new JTextField(30);
+        billingRateTF.setInputVerifier(new BillingVerifier()); //sets the verifier
 
         commentsLabel = new JLabel("Enter additional comments: ");
         commentsTF = new JTextField(30);
@@ -81,16 +87,21 @@ public class MyDialog extends JDialog
         panel.setLayout(groupLayout);
         groupLayout.setAutoCreateGaps(true);
         groupLayout.setAutoCreateContainerGaps(true);
+
+        panelForSubmitCancel = new JPanel();
+        add(panelForSubmitCancel,BorderLayout.SOUTH);
+        panelForSubmitCancel.add(submitButton);
+        panelForSubmitCancel.add(cancelButton);
         
 //=================================Creating horizonal and vertical groups ==========================================
 
         GroupLayout.SequentialGroup hGroup = groupLayout.createSequentialGroup();
         hGroup.addGroup(groupLayout.createParallelGroup().
         addComponent(dateLabel).addComponent(nameLabel).addComponent(serviceCodeLabel).addComponent(initalMileageLabel)
-        .addComponent(mileageOnReturnLabel).addComponent(billingRateLabel).addComponent(commentsLabel).addComponent(submitButton));
+        .addComponent(mileageOnReturnLabel).addComponent(billingRateLabel).addComponent(commentsLabel));
         hGroup.addGroup(groupLayout.createParallelGroup().
         addComponent(dateTF).addComponent(nameTF).addComponent(serviceCodeTF).addComponent(initialMileageTF)
-        .addComponent(mileageOnReturnTF).addComponent(billingRateTF).addComponent(commentsTF).addComponent(cancelButton));
+        .addComponent(mileageOnReturnTF).addComponent(billingRateTF).addComponent(commentsTF));
         groupLayout.setHorizontalGroup(hGroup);
 
         GroupLayout.SequentialGroup vGroup = groupLayout.createSequentialGroup();
@@ -108,8 +119,6 @@ public class MyDialog extends JDialog
         addComponent(billingRateLabel).addComponent(billingRateTF));
         vGroup.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE).
         addComponent(commentsLabel).addComponent(commentsTF));
-        vGroup.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE).
-        addComponent(submitButton).addComponent(cancelButton));
         groupLayout.setVerticalGroup(vGroup);
 
 
