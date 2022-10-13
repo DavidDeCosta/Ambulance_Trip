@@ -113,7 +113,6 @@ public class TripRecord {
     public String toString() 
     {
 
-
         billingRate = Math.floor(billingRate * 100) /100;   //makes the decimal show to 2 places
 
         return myDate + "   " + name + "   " + serviceCode + "   " + initialMileage + "   " + mileageOnReturn + "   "

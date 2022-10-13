@@ -1,6 +1,8 @@
 import java.awt.Dialog;
 import javax.swing.*;
 import javax.swing.GroupLayout.Alignment;
+import javax.xml.crypto.Data;
+
 import java.awt.event.*;
 import java.awt.*;
 
@@ -37,6 +39,16 @@ public class MyDialog extends JDialog
     String []serviceCodeOptions = { "", "A0428", "A0429", "A0427", "A0434"};
     JComboBox comboBox;
 
+    TripRecord record;
+    String name;
+    String date;
+    String initialMileage;
+    String mileageOnReturn;
+    String serviceCode;
+    String comments;
+
+    DataManager dataManager;
+
 //==================================CONSTRUCTORS ===================================================
     MyDialog()
     {
@@ -68,9 +80,11 @@ public class MyDialog extends JDialog
 
         initalMileageLabel = new JLabel("Enter initial Mileage: ");
         initialMileageTF= new JTextField(30);
+        initialMileageTF.setInputVerifier(new MileageVerifier());
 
         mileageOnReturnLabel = new JLabel("Enter return mileage ");
         mileageOnReturnTF = new JTextField(30);
+        mileageOnReturnTF.setInputVerifier(new MileageVerifier());
 
         billingRateLabel = new JLabel("Enter billing rate: ");
         billingRateTF = new JTextField(30);
@@ -161,6 +175,8 @@ public class MyDialog extends JDialog
 
     void handSubmit()
     {
-        
+        record = new TripRecord(name);
+        dataManager.add(record);
+
     }
 }
