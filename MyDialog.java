@@ -34,6 +34,9 @@ public class MyDialog extends JDialog
 
     BillingVerifier billingVerifier;
 
+    String []serviceCodeOptions = { "", "A0428", "A0429", "A0427", "A0434"};
+    JComboBox comboBox;
+
 //==================================CONSTRUCTORS ===================================================
     MyDialog()
     {
@@ -54,12 +57,14 @@ public class MyDialog extends JDialog
 
         dateTF = new JTextField(30);
         dateLabel = new JLabel("Enter the Date: ");
+        dateTF.setInputVerifier(new DateVerifier()); // sets the verifier
 
-        nameLabel = new JLabel("Enter your name: ");
+        nameLabel = new JLabel("Enter name: ");
         nameTF = new JTextField(30);
 
         serviceCodeLabel = new JLabel("Enter seriveCode: ");
-        serviceCodeTF = new JTextField(30);
+//        serviceCodeTF = new JTextField(30);
+        comboBox = new JComboBox<>(serviceCodeOptions);
 
         initalMileageLabel = new JLabel("Enter initial Mileage: ");
         initialMileageTF= new JTextField(30);
@@ -100,7 +105,7 @@ public class MyDialog extends JDialog
         addComponent(dateLabel).addComponent(nameLabel).addComponent(serviceCodeLabel).addComponent(initalMileageLabel)
         .addComponent(mileageOnReturnLabel).addComponent(billingRateLabel).addComponent(commentsLabel));
         hGroup.addGroup(groupLayout.createParallelGroup().
-        addComponent(dateTF).addComponent(nameTF).addComponent(serviceCodeTF).addComponent(initialMileageTF)
+        addComponent(dateTF).addComponent(nameTF).addComponent(comboBox).addComponent(initialMileageTF)
         .addComponent(mileageOnReturnTF).addComponent(billingRateTF).addComponent(commentsTF));
         groupLayout.setHorizontalGroup(hGroup);
 
@@ -110,7 +115,7 @@ public class MyDialog extends JDialog
         vGroup.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE).
         addComponent(nameLabel).addComponent(nameTF));
         vGroup.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE).
-        addComponent(serviceCodeLabel).addComponent(serviceCodeTF));
+        addComponent(serviceCodeLabel).addComponent(comboBox));
         vGroup.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE).
         addComponent(initalMileageLabel).addComponent(initialMileageTF));
         vGroup.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE).
@@ -146,6 +151,10 @@ public class MyDialog extends JDialog
         else if(e.getActionCommand().equals("Submit"))
         {
             handSubmit();
+        }
+        else if(e.getActionCommand().equals("serviceCodeTF"))
+        {
+
         }
         
     }

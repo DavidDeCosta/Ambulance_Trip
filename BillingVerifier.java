@@ -10,25 +10,23 @@ public class BillingVerifier extends InputVerifier
     public boolean verify(JComponent input) {
         
         String billingRate;
-        billingRate = ((JTextField)(input)).getText().trim();
+        billingRate = ((JTextField)(input)).getText().trim(); // billing rate hold the string from the textfield
 
-        int numForBilling;
-//        numForBilling = Integer.parseInt(billingRate);
-
-        double originalBillingNum;
-        originalBillingNum = Double.parseDouble(billingRate);
-
-        numForBilling = (int)(originalBillingNum*100);
-
-        numForBilling /= 100.0;
-
- //       String[] splitString = billingRate.split("\\.");
-
-        if(billingRate.equals(""))
+        if(billingRate.equals(""))  //has to be here incase user backspaces and leaves, the conversions get messed up
         {
             return true;
         }
-        else if(numForBilling == originalBillingNum)
+
+        double numForBilling;
+        double originalBillingNum;
+
+        originalBillingNum = Double.parseDouble(billingRate);  //originalNum holds the 'double' number of that string
+
+        numForBilling = (int)(originalBillingNum*100);         // numForbilling holds the integer of  originNum *100
+
+        numForBilling /= 100.0;                                //puts the decimal place back two spaces
+
+        if(numForBilling == originalBillingNum)
         {
             return true;
         }
