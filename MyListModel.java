@@ -52,13 +52,13 @@ public class MyListModel extends DefaultListModel<TripRecord>
 
     @Override
     public void add(TripRecord rec) {
-        // TODO Auto-generated method stub
         
+        addElement(rec);
     }
 
     @Override
     public void replace(TripRecord rec, int index) {
-        // TODO Auto-generated method stub
+        
         
     }
     

@@ -56,6 +56,7 @@ public class TripRecord {
         {
             JOptionPane.showMessageDialog(null, "Could not read name");
         }
+
     }
 
 //=========================================Methods //===================================================
@@ -102,7 +103,6 @@ public class TripRecord {
         rec.billingRate = (ran.nextDouble(0,2000));
 
         rec.comments = (ranComment[ran.nextInt(4)]);
-
 
 
         return rec;

@@ -197,7 +197,7 @@ public class Myframe extends JFrame
 
     void handleAdd()
     {
-        dialog = new MyDialog();
+        dialog = new MyDialog(justAListModel);
 
     }
 
@@ -297,7 +297,6 @@ public class Myframe extends JFrame
                 dis = new DataInputStream(new FileInputStream(theFileChooser.getSelectedFile()));
                 justAListModel = new MyListModel(dis);
                 displayList.setModel(justAListModel);
-
 
             }
             catch(FileNotFoundException e)

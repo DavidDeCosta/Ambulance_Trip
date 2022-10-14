@@ -5,7 +5,6 @@ import javax.swing.JTextField;
 public class BillingVerifier extends InputVerifier
 {
 
-
     @Override
     public boolean verify(JComponent input) {
         

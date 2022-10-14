@@ -50,13 +50,15 @@ public class MyDialog extends JDialog
     DataManager dataManager;
 
 //==================================CONSTRUCTORS ===================================================
-    MyDialog()
+    MyDialog(DataManager manager)
     {
+        this.dataManager = manager;
         buildGUI();
     }
 
-    MyDialog(TripRecord rec)
+    MyDialog(DataManager manager, TripRecord record, int index)
     {
+        this.dataManager = manager;
 
     }
 
@@ -75,7 +77,6 @@ public class MyDialog extends JDialog
         nameTF = new JTextField(30);
 
         serviceCodeLabel = new JLabel("Enter seriveCode: ");
-//        serviceCodeTF = new JTextField(30);
         comboBox = new JComboBox<>(serviceCodeOptions);
 
         initalMileageLabel = new JLabel("Enter initial Mileage: ");
@@ -170,13 +171,12 @@ public class MyDialog extends JDialog
         {
 
         }
-        
     }
 
     void handSubmit()
     {
         record = new TripRecord(name);
+        record.name = nameTF.getText();
         dataManager.add(record);
-
     }
 }
