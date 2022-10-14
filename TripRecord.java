@@ -41,7 +41,8 @@ public class TripRecord {
         
     }
 
-    TripRecord(String name)
+    TripRecord(String name, long date, String serviceCode, int initialMileage, int mileageOnReturn,
+                double billingRate, String comments)
     {
         this.name = name;
     }

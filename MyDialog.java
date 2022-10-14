@@ -41,11 +41,12 @@ public class MyDialog extends JDialog
 
     TripRecord record;
     String name;
-    String date;
-    String initialMileage;
-    String mileageOnReturn;
+    long date;
+    int initialMileage;
+    int mileageOnReturn;
     String serviceCode;
     String comments;
+    double billingRate;
 
     DataManager dataManager;
 
@@ -175,8 +176,9 @@ public class MyDialog extends JDialog
 
     void handSubmit()
     {
-        record = new TripRecord(name);
+        record = new TripRecord(name, date,serviceCode,initialMileage,mileageOnReturn,billingRate, comments );
         record.name = nameTF.getText();
+        record.serviceCode = (String)comboBox.getSelectedItem();
         dataManager.add(record);
     }
 }
