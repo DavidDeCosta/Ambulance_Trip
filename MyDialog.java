@@ -176,9 +176,19 @@ public class MyDialog extends JDialog
 
     void handSubmit()
     {
+        String tempForMileage;
+        String tempforBilling;
+
         record = new TripRecord(name, date,serviceCode,initialMileage,mileageOnReturn,billingRate, comments );
         record.name = nameTF.getText();
         record.serviceCode = (String)comboBox.getSelectedItem();
+        record.comments = commentsTF.getText();
+        tempForMileage = initialMileageTF.getText();
+        record.initialMileage = Integer.parseInt(tempForMileage);
+        tempForMileage = mileageOnReturnTF.getText();
+        record.mileageOnReturn = Integer.parseInt(tempForMileage);
+        tempforBilling = billingRateTF.getText();
+        record.billingRate = Double.parseDouble(tempforBilling);
         dataManager.add(record);
     }
 }
