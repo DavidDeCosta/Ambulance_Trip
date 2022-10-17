@@ -98,7 +98,14 @@ public class TripRecord {
         String [] dates = {"10/05/1990", "08/19/1999", "04/25/2000", "11/03/2018"};
         String [] ranComment = {"Patient was crazy", "Patient was calm", "Patient was in pain", "No comment"};
 
-        rec.stringDate = (dates[ran.nextInt(4)]);     // returns a random long to be used as a date
+        SimpleDateFormat sdf;
+        ParsePosition pos;
+        String stringOfDate = rec.stringDate = (dates[ran.nextInt(4)]);
+        sdf = new SimpleDateFormat("M/d/y");
+        pos = new ParsePosition(0);
+
+        rec.date = (Date)sdf.parse(stringOfDate,pos);
+
 
         rec.name = (ranName[ran.nextInt(4)]);
         rec.serviceCode = (ranCode[ran.nextInt(4)]);
@@ -131,6 +138,7 @@ public class TripRecord {
 
         stringDate = (String.format("%tm/%te/%tY",date,date,date));
 
+        
 
         return stringDate + "   " + name + "   " + serviceCode + "   " + initialMileage + "   " + mileageOnReturn + "   "
                +  billingRate + "     " + comments + "     " ;

@@ -19,7 +19,7 @@ public class MileageVerifier extends InputVerifier
 
         double originalmileageValue;
         int numFormileage;
-
+        try{
         originalmileageValue = Double.parseDouble(mileage);     
         numFormileage = (int)originalmileageValue;
 
@@ -27,7 +27,11 @@ public class MileageVerifier extends InputVerifier
         {
             return true;
         }
-
+    }
+    catch(NumberFormatException e)
+    {
+        System.out.println("Number format exception DDC \n");
+    }
         return false;
     }
     

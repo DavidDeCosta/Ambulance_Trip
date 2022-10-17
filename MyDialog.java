@@ -59,6 +59,7 @@ public class MyDialog extends JDialog
     String stringDate;
 
 //==================================CONSTRUCTORS ===================================================
+
     MyDialog(DataManager manager)
     {
         this.dataManager = manager;
