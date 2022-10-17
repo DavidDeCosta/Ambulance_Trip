@@ -129,7 +129,10 @@ public class TripRecord {
 
         billingRate = Math.floor(billingRate * 100) /100;   //makes the decimal show to 2 places
 
-        return date + "   " + name + "   " + serviceCode + "   " + initialMileage + "   " + mileageOnReturn + "   "
+        stringDate = (String.format("%tm/%te/%tY",date,date,date));
+
+
+        return stringDate + "   " + name + "   " + serviceCode + "   " + initialMileage + "   " + mileageOnReturn + "   "
                +  billingRate + "     " + comments + "     " ;
     }
 

@@ -57,12 +57,20 @@ public class MyDialog extends JDialog
     ParsePosition pos;
 
     int index;
+    String stringDate;
 
 //==================================CONSTRUCTORS ===================================================
     MyDialog(DataManager manager)
     {
         this.dataManager = manager;
         buildGUI();
+
+        add(panel);
+        setLocationRelativeTo(null);   //centers the JDialog
+        setSize(400,400);
+        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        setModalityType(ModalityType.APPLICATION_MODAL);
+        setVisible(true);
     }
 
     MyDialog(DataManager manager, TripRecord record, int index)
@@ -72,6 +80,13 @@ public class MyDialog extends JDialog
         this.record = record;
         buildGUI();
         populateFields(record);
+
+        add(panel);
+        setLocationRelativeTo(null);   //centers the JDialog
+        setSize(400,400);
+        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        setModalityType(ModalityType.APPLICATION_MODAL);
+        setVisible(true);
 
     }
 
@@ -155,18 +170,20 @@ public class MyDialog extends JDialog
         groupLayout.setVerticalGroup(vGroup);
 
 
-        add(panel);
-        setLocationRelativeTo(null);   //centers the JDialog
-        setSize(400,400);
-        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-        setModalityType(ModalityType.APPLICATION_MODAL);
-        setVisible(true);
+
     }
 
 
     void populateFields(TripRecord record)
     {
-        
+
+        dateTF.setText(String.format("%tm/%te/%tY",record.date,record.date,record.date));
+        nameTF.setText(record.name);
+        comboBox.setSelectedItem(record.serviceCode);
+        initialMileageTF.setText(Integer.toString(record.initialMileage));
+        mileageOnReturnTF.setText(Integer.toString(record.mileageOnReturn));
+        billingRateTF.setText(Double.toString(record.billingRate));
+        commentsTF.setText(record.comments);
     }
 
     @Override
