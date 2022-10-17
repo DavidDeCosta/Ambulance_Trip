@@ -40,7 +40,7 @@ public class DateVerifier extends InputVerifier
         ParsePosition parsePos;
         parsePos = new ParsePosition(0); //start at the beggining
 
-        myDate = format.parse(dateStr,parsePos);
+        myDate =  format.parse(dateStr,parsePos);
 
         if(parsePos.getIndex() == dateStr.length())
         {

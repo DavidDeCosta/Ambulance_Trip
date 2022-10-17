@@ -1,6 +1,6 @@
 import java.io.*;
 import javax.swing.JOptionPane;
-import java.sql.Date;
+import java.util.Date;
 import java.text.ParsePosition;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -10,7 +10,8 @@ public class TripRecord {
 
 //========================================Data Members //=================================================
     
-    String date;                    //Date of the trip   long?
+    Date date;                    //Date of the trip   long?
+    String stringDate;
     String name;                  // Name of the patient
     String serviceCode;           // service code
     int initialMileage;           // initial mileage int?
@@ -46,7 +47,7 @@ public class TripRecord {
     {
         try 
         {
-            this.date = dis.readUTF();
+            this.date = new Date(dis.readLong());
             this.name = dis.readUTF();
             this.serviceCode = dis.readUTF();
             this.initialMileage = dis.readInt();
@@ -67,7 +68,7 @@ public class TripRecord {
     {
         try 
         {
-            dos.writeUTF(date);
+            dos.writeLong(date.getTime());
             dos.writeUTF(name);
             dos.writeUTF(serviceCode);
             dos.writeInt(initialMileage);
@@ -97,7 +98,7 @@ public class TripRecord {
         String [] dates = {"10/05/1990", "08/19/1999", "04/25/2000", "11/03/2018"};
         String [] ranComment = {"Patient was crazy", "Patient was calm", "Patient was in pain", "No comment"};
 
-        rec.date = (dates[ran.nextInt(4)]);     // returns a random long to be used as a date
+        rec.stringDate = (dates[ran.nextInt(4)]);     // returns a random long to be used as a date
 
         rec.name = (ranName[ran.nextInt(4)]);
         rec.serviceCode = (ranCode[ran.nextInt(4)]);

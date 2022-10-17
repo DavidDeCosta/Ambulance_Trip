@@ -1,10 +1,8 @@
 import javax.swing.*;
 import javax.swing.GroupLayout.Alignment;
-import javax.xml.transform.Source;
 
 import java.awt.event.*;
-import java.sql.Date;
-import java.text.ParseException;
+import java.util.Date;
 import java.text.ParsePosition;
 import java.text.SimpleDateFormat;
 import java.awt.*;
@@ -58,6 +56,8 @@ public class MyDialog extends JDialog
     SimpleDateFormat sdf;
     ParsePosition pos;
 
+    int index;
+
 //==================================CONSTRUCTORS ===================================================
     MyDialog(DataManager manager)
     {
@@ -68,6 +68,7 @@ public class MyDialog extends JDialog
     MyDialog(DataManager manager, TripRecord record, int index)
     {
         this.dataManager = manager;
+        this.index = index;
         this.record = record;
         buildGUI();
         populateFields(record);
@@ -190,6 +191,44 @@ public class MyDialog extends JDialog
     {
         String tempForMileage;
         String tempforBilling;
+        String tempDate;
+
+        String tempForInitial = initialMileageTF.getText();
+        String tempForReturn = mileageOnReturnTF.getText();
+
+        if(dateTF.getText().trim().equals(""))
+        {
+            dateTF.requestFocus();
+        }
+        else if(nameTF.getText().trim().equals(""))
+        {
+            nameTF.requestFocus();
+        }
+        else if(comboBox.getSelectedItem().equals(""))
+        {
+            serviceCodeTF.requestFocus();
+        }
+        else if(initialMileageTF.getText().trim().equals(""))
+        {
+            initialMileageTF.requestFocus();
+        }
+        else if(mileageOnReturnTF.getText().trim().equals(""))
+        {
+            mileageOnReturnTF.requestFocus();
+        }
+        else if(billingRateTF.getText().trim().equals(""))
+        {
+            billingRateTF.requestFocus();
+        }
+        else if(commentsTF.getText().trim().equals(""))
+        {
+            commentsTF.requestFocus();
+        }
+        else if(Integer.parseInt(tempForInitial) > Integer.parseInt(tempForReturn))
+        {
+            initialMileageTF.requestFocus();
+        }
+        else{
 
         record = new TripRecord(name, date,serviceCode,initialMileage,mileageOnReturn,billingRate, comments );
         record.name = nameTF.getText();
@@ -202,17 +241,13 @@ public class MyDialog extends JDialog
         tempforBilling = billingRateTF.getText();
         record.billingRate = Double.parseDouble(tempforBilling);
 
+        tempDate = dateTF.getText();
+        record.date = convertStringToDate(tempDate);
+        dataManager.add(record);
+        }
+
+
         
-        if(initialMileage >mileageOnReturn)
-        {
-            initialMileageTF.requestFocusInWindow();
-        }
-
-        if(nameTF.getText().trim().length() == 0)
-        {
-            JOptionPane.showMessageDialog(this, "Must enter a name");
-        }
-
 /*
         String stringOfDate;
         stringOfDate = dateTF.getText();
@@ -220,9 +255,8 @@ public class MyDialog extends JDialog
         record.date = convertStringToDate(stringOfDate);    //convers the string from the textfield to a Date datatype
  */
 
-        record.date = dateTF.getText();
-        dataManager.add(record);
-        justAListModel.numberOfTripRecords++;  // to keep track of how many to store
+
+  //      justAListModel.numberOfTripRecords++;  // to keep track of how many to store
 
 
         
@@ -233,15 +267,13 @@ public class MyDialog extends JDialog
         
         Date date = null;
         sdf = new SimpleDateFormat("M/d/y");
-//        pos = new ParsePosition(0);
+        pos = new ParsePosition(0);
 
-        try 
+
+        date = (Date)sdf.parse(stringOfDate,pos);
+        if(stringOfDate.length() != pos.getIndex())
         {
-            date = (Date)sdf.parse(stringOfDate);
-        } 
-        catch (ParseException e) 
-        {
-            e.printStackTrace();
+            dateTF.requestFocus();
         }
 
 

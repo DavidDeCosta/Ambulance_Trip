@@ -217,7 +217,7 @@ public class Myframe extends JFrame
     void handleEdit()
     {
         index = displayList.getSelectedIndex();
-//        record = displayList.get();
+        record = justAListModel.elementAt(index);
         dialog = new MyDialog(justAListModel, record, index);
     }
 
