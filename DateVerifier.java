@@ -47,7 +47,6 @@ public class DateVerifier extends InputVerifier
             return true;
         }
 
-
         return false;
     }
 

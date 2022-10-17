@@ -1,9 +1,12 @@
-import java.awt.Dialog;
 import javax.swing.*;
 import javax.swing.GroupLayout.Alignment;
-import javax.xml.crypto.Data;
+import javax.xml.transform.Source;
 
 import java.awt.event.*;
+import java.sql.Date;
+import java.text.ParseException;
+import java.text.ParsePosition;
+import java.text.SimpleDateFormat;
 import java.awt.*;
 
 public class MyDialog extends JDialog
@@ -49,6 +52,11 @@ public class MyDialog extends JDialog
     double billingRate;
 
     DataManager dataManager;
+    MyListModel justAListModel;
+
+    
+    SimpleDateFormat sdf;
+    ParsePosition pos;
 
 //==================================CONSTRUCTORS ===================================================
     MyDialog(DataManager manager)
@@ -60,6 +68,9 @@ public class MyDialog extends JDialog
     MyDialog(DataManager manager, TripRecord record, int index)
     {
         this.dataManager = manager;
+        this.record = record;
+        buildGUI();
+        populateFields(record);
 
     }
 
@@ -151,7 +162,8 @@ public class MyDialog extends JDialog
         setVisible(true);
     }
 
-    void populateFields(TripRecord trip)
+
+    void populateFields(TripRecord record)
     {
         
     }
@@ -189,6 +201,40 @@ public class MyDialog extends JDialog
         record.mileageOnReturn = Integer.parseInt(tempForMileage);
         tempforBilling = billingRateTF.getText();
         record.billingRate = Double.parseDouble(tempforBilling);
+
+        
+/*
+        String stringOfDate;
+        stringOfDate = dateTF.getText();
+        System.out.println(" \n THIS IS THE STRING date: " + stringOfDate + "\n");
+        record.date = convertStringToDate(stringOfDate);    //convers the string from the textfield to a Date datatype
+ */
+
+        record.date = dateTF.getText();
         dataManager.add(record);
+        justAListModel.numberOfTripRecords++;  // to keep track of how many to store
+
+
+        
+    }
+
+    Date convertStringToDate(String stringOfDate)
+    {
+        
+        Date date = null;
+        sdf = new SimpleDateFormat("M/d/y");
+//        pos = new ParsePosition(0);
+
+        try 
+        {
+            date = (Date)sdf.parse(stringOfDate);
+        } 
+        catch (ParseException e) 
+        {
+            e.printStackTrace();
+        }
+
+
+        return date;
     }
 }

@@ -6,7 +6,7 @@ import java.awt.*;                             // for Dimension and Toolkit
 import java.util.Date;
 
 public class Myframe extends JFrame
-                        implements ActionListener, ListSelectionListener
+                        implements ActionListener, ListSelectionListener, MouseInputListener
 {
     //=======================================DATA MEMBERS =====================================================
 
@@ -34,6 +34,7 @@ public class Myframe extends JFrame
     JButton delete;
     JButton add_random;
     JButton exit;
+    JButton edit;
     
 
     JDialog userImputField;
@@ -56,6 +57,8 @@ public class Myframe extends JFrame
     JScrollPane tripScrollPane;
 
     MyDialog dialog;
+
+    int index = 0;
 
 
 
@@ -107,6 +110,11 @@ public class Myframe extends JFrame
         add.setMnemonic('A');                //press alt + a to add
         southPanel.add(add);
 
+        edit = new JButton("edit");
+        edit.addActionListener(this);
+        edit.setEnabled(false);
+        southPanel.add(edit);
+
         delete = new JButton("delete");
         delete.addActionListener(this);
         delete.setToolTipText("alt + d, to delete");
@@ -153,6 +161,7 @@ public class Myframe extends JFrame
         theMenuOnTheBar.add(clear);
         clear.addActionListener(this);
 
+        displayList.addMouseListener(this);
  
     }
 
@@ -166,6 +175,10 @@ public class Myframe extends JFrame
         else if(e.getActionCommand().equals("add"))
         {
             handleAdd();
+        }
+        else if(e.getActionCommand().equals("edit"))
+        {
+            handleEdit();
         }
         else if(e.getActionCommand().equals("saveAs"))
         {
@@ -199,6 +212,13 @@ public class Myframe extends JFrame
     {
         dialog = new MyDialog(justAListModel);
 
+    }
+
+    void handleEdit()
+    {
+        index = displayList.getSelectedIndex();
+//        record = displayList.get();
+        dialog = new MyDialog(justAListModel, record, index);
     }
 
     void handleDelete()
@@ -326,6 +346,65 @@ public class Myframe extends JFrame
 
     @Override
     public void valueChanged(ListSelectionEvent e) 
+    {
+        
+        
+    }
+
+
+    @Override
+    public void mouseClicked(MouseEvent e) 
+    {
+        
+        
+    }
+
+
+    @Override
+    public void mousePressed(MouseEvent e) 
+    {
+        if(displayList.getSelectedValue() != null)
+        {
+            edit.setEnabled(true);
+        }
+        
+    }
+
+
+    @Override
+    public void mouseReleased(MouseEvent e) 
+    {
+        
+        
+    }
+
+
+    @Override
+    public void mouseEntered(MouseEvent e) 
+    {
+        
+        
+    }
+
+
+    @Override
+    public void mouseExited(MouseEvent e) 
+    {
+        
+        
+    }
+
+
+    @Override
+    public void mouseDragged(MouseEvent e) 
+    {
+        
+        
+    }
+
+
+    @Override
+    public void mouseMoved(MouseEvent e) 
     {
         
         
