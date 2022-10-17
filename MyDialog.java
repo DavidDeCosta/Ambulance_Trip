@@ -203,6 +203,16 @@ public class MyDialog extends JDialog
         record.billingRate = Double.parseDouble(tempforBilling);
 
         
+        if(initialMileage >mileageOnReturn)
+        {
+            initialMileageTF.requestFocusInWindow();
+        }
+
+        if(nameTF.getText().trim().length() == 0)
+        {
+            JOptionPane.showMessageDialog(this, "Must enter a name");
+        }
+
 /*
         String stringOfDate;
         stringOfDate = dateTF.getText();

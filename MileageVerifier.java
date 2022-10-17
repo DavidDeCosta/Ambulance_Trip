@@ -9,48 +9,21 @@ public class MileageVerifier extends InputVerifier
     @Override
     public boolean verify(JComponent input) 
     {
-        String initialMileage;
-        initialMileage = ((JTextField)(input)).getText().trim();
+        String mileage;
+        mileage = ((JTextField)(input)).getText().trim();
 
-        if(initialMileage.equals(""))
+        if(mileage.equals(""))
         {
             return true;
         }
 
-        double originalInitialMileageValue;
-        int numForInitialMileage;
+        double originalmileageValue;
+        int numFormileage;
 
-        originalInitialMileageValue = Double.parseDouble(initialMileage);     
-        numForInitialMileage = (int)originalInitialMileageValue;
+        originalmileageValue = Double.parseDouble(mileage);     
+        numFormileage = (int)originalmileageValue;
 
-        if(numForInitialMileage == originalInitialMileageValue)  //makes sure there isn't any numbers in the decimal place. 'if any'
-        {
-            return true;
-        }
-
-
-        String mileageOnReturn;
-        mileageOnReturn = ((JTextField)(input)).getText().trim();
-
-        if(mileageOnReturn.equals(""))
-        {
-            return true;
-        }
-
-
-        double originalMileageOnReturn;
-        int numForMileageOnReturn;
-
-        originalMileageOnReturn = Double.parseDouble(mileageOnReturn);     
-        numForMileageOnReturn = (int)originalMileageOnReturn;
-
-
-        if(numForMileageOnReturn == originalMileageOnReturn)  //makes sure there isn't any numbers in the decimal place. 'if any'
-        {
-            return true;
-        }
-
-        if(numForInitialMileage < numForMileageOnReturn)
+        if(numFormileage == originalmileageValue)  //makes sure there isn't any numbers in the decimal place. 'if any'
         {
             return true;
         }
