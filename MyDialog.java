@@ -26,7 +26,6 @@ public class MyDialog extends JDialog
 
     JTextField dateTF;
     JTextField nameTF;
-    JTextField serviceCodeTF;
     JTextField initialMileageTF;
     JTextField mileageOnReturnTF;
     JTextField billingRateTF;
@@ -63,7 +62,7 @@ public class MyDialog extends JDialog
     MyDialog(DataManager manager)
     {
         this.dataManager = manager;
-        buildGUI();
+        buildGUI("Submit");
 
         add(panel);
         setLocationRelativeTo(null);   //centers the JDialog
@@ -78,7 +77,7 @@ public class MyDialog extends JDialog
         this.dataManager = manager;
         this.index = index;
         this.record = record;
-        buildGUI();
+        buildGUI("Edit");
         populateFields(record);
 
         add(panel);
@@ -92,7 +91,7 @@ public class MyDialog extends JDialog
 
 //====================================METHODS ===========================================================
 
-    void buildGUI()
+    void buildGUI(String actionCommand)
     {
 
 //============================= Instantiating Labels and TextFields ========================================
@@ -125,6 +124,7 @@ public class MyDialog extends JDialog
 //===================================Adding buttons ===========================================================
         submitButton = new JButton("Submit");
         submitButton.addActionListener(this);
+        submitButton.setActionCommand(actionCommand);
 
         cancelButton = new JButton("Cancel");
         cancelButton.addActionListener(this);
@@ -138,6 +138,8 @@ public class MyDialog extends JDialog
 
         panelForSubmitCancel = new JPanel();
         add(panelForSubmitCancel,BorderLayout.SOUTH);
+
+
         panelForSubmitCancel.add(submitButton);
         panelForSubmitCancel.add(cancelButton);
         
@@ -196,15 +198,15 @@ public class MyDialog extends JDialog
         }
         else if(e.getActionCommand().equals("Submit"))
         {
-            handSubmit();
+            handAdd();
         }
-        else if(e.getActionCommand().equals("serviceCodeTF"))
+        else if(e.getActionCommand().equals("Edit"))
         {
-
+            handleEdit();
         }
     }
 
-    void handSubmit()
+    void handleEdit()
     {
         String tempForMileage;
         String tempforBilling;
@@ -223,7 +225,68 @@ public class MyDialog extends JDialog
         }
         else if(comboBox.getSelectedItem().equals(""))
         {
-            serviceCodeTF.requestFocus();
+            comboBox.requestFocus();
+        }
+        else if(initialMileageTF.getText().trim().equals(""))
+        {
+            initialMileageTF.requestFocus();
+        }
+        else if(mileageOnReturnTF.getText().trim().equals(""))
+        {
+            mileageOnReturnTF.requestFocus();
+        }
+        else if(billingRateTF.getText().trim().equals(""))
+        {
+            billingRateTF.requestFocus();
+        }
+        else if(commentsTF.getText().trim().equals(""))
+        {
+            commentsTF.requestFocus();
+        }
+        else if(Integer.parseInt(tempForInitial) > Integer.parseInt(tempForReturn))
+        {
+            initialMileageTF.requestFocus();
+        }
+        else{
+
+        record = new TripRecord(name, date,serviceCode,initialMileage,mileageOnReturn,billingRate, comments );
+        record.name = nameTF.getText();
+        record.serviceCode = (String)comboBox.getSelectedItem();
+        record.comments = commentsTF.getText();
+        tempForMileage = initialMileageTF.getText();
+        record.initialMileage = Integer.parseInt(tempForMileage);
+        tempForMileage = mileageOnReturnTF.getText();
+        record.mileageOnReturn = Integer.parseInt(tempForMileage);
+        tempforBilling = billingRateTF.getText();
+        record.billingRate = Double.parseDouble(tempforBilling);
+
+        tempDate = dateTF.getText();
+        record.date = convertStringToDate(tempDate);
+        dataManager.replace(record,index);
+
+    }
+}
+
+    void handAdd()
+    {
+        String tempForMileage;
+        String tempforBilling;
+        String tempDate;
+
+        String tempForInitial = initialMileageTF.getText();
+        String tempForReturn = mileageOnReturnTF.getText();
+
+        if(dateTF.getText().trim().equals(""))
+        {
+            dateTF.requestFocus();
+        }
+        else if(nameTF.getText().trim().equals(""))
+        {
+            nameTF.requestFocus();
+        }
+        else if(comboBox.getSelectedItem().equals(""))
+        {
+            comboBox.requestFocus();
         }
         else if(initialMileageTF.getText().trim().equals(""))
         {
@@ -262,20 +325,6 @@ public class MyDialog extends JDialog
         record.date = convertStringToDate(tempDate);
         dataManager.add(record);
         }
-
-
-        
-/*
-        String stringOfDate;
-        stringOfDate = dateTF.getText();
-        System.out.println(" \n THIS IS THE STRING date: " + stringOfDate + "\n");
-        record.date = convertStringToDate(stringOfDate);    //convers the string from the textfield to a Date datatype
- */
-
-
-  //      justAListModel.numberOfTripRecords++;  // to keep track of how many to store
-
-
         
     }
 

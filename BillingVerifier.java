@@ -19,6 +19,7 @@ public class BillingVerifier extends InputVerifier
         double numForBilling;
         double originalBillingNum;
 
+    try{
         originalBillingNum = Double.parseDouble(billingRate);  //originalNum holds the 'double' number of that string
 
         numForBilling = (int)(originalBillingNum*100);         // numForbilling holds the integer of  originNum *100
@@ -29,6 +30,11 @@ public class BillingVerifier extends InputVerifier
         {
             return true;
         }
+    }
+    catch(NumberFormatException e)
+    {
+        System.out.println("Number format exception DDC \n");
+    }
 
         return false;
     }

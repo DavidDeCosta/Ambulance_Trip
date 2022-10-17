@@ -59,7 +59,7 @@ public class MyListModel extends DefaultListModel<TripRecord>
     @Override
     public void replace(TripRecord rec, int index) {
         
-        
+        setElementAt(rec, index);
     }
     
 }
