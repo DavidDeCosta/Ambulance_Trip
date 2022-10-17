@@ -1,6 +1,5 @@
 import javax.swing.*;
 import javax.swing.GroupLayout.Alignment;
-
 import java.awt.event.*;
 import java.util.Date;
 import java.text.ParsePosition;
@@ -307,7 +306,10 @@ public class MyDialog extends JDialog
         }
         else if(Integer.parseInt(tempForInitial) > Integer.parseInt(tempForReturn))
         {
+            initialMileageTF.setBackground(Color.RED);
+            mileageOnReturnTF.setBackground(Color.RED);
             initialMileageTF.requestFocus();
+            JOptionPane.showMessageDialog(this, "Inital mileage was less than mileage return!");
         }
         else{
 

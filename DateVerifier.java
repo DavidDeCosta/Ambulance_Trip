@@ -1,7 +1,6 @@
 import java.text.ParsePosition;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-
 import javax.swing.InputVerifier;
 import javax.swing.JComponent;
 import javax.swing.JTextField;
